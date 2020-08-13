@@ -33,7 +33,7 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = prompt(`Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family',\n
+  let displayOption = prompt(`Found ${person.firstName} ${person.lastName}. Do you want to know their 'info', 'family',\n
                              or 'descendants'? Type the option you want or 'restart' or 'quit'`);
 
   switch(displayOption){
@@ -41,7 +41,7 @@ function mainMenu(person, people){
     displayInformation(person);
     break;
     case "family":
-    // TODO: get person's family
+    findFamilyMembersOfFoundPerson(person,people)
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -83,14 +83,41 @@ function searchByName(people){
     }
   })
   // TODO: find the person using the name they entered
-  return foundPerson;
+  return foundPerson[0];
 }
 
-function findFamilyMembersOfFoundPerson(){
-  
+function findFamilyMembersOfFoundPerson(person,people){
+let familyMembers;
+//one person
+let spouse = findSpouseOfPerson(person,people);
+//multiple possible people
+let parents = findParentsOfPerson(person,people);
+//
 }
 
+function findParentsOfPerson(person, people){
+  let parents = people.filter(function (el){
+    if(person.parents[0] === el.id || person.parents[1] === el.id){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return parents;
+}
 
+function findSpouseOfPerson(person,people){
+let spouse = people.filter(function (el){
+  if(person.currentSpouse === el.id){
+    return true;
+  }
+  else{
+    return false;
+  }
+})
+return spouse[0];
+}
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
