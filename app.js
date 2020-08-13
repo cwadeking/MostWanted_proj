@@ -12,7 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      // TODO: search by traits
+      searchResults = searchByTraits(people);// TODO: search by traits
       break;
       default:
     app(people); // restart app
@@ -33,12 +33,12 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = prompt(`Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family',\n
+  let displayOption = prompt(`Found ${person.firstName} ${person.lastName}. Do you want to know their 'info', 'family',\n
                              or 'descendants'? Type the option you want or 'restart' or 'quit'`);
 
   switch(displayOption){
     case "info":
-    displayInformation(person);
+    displayPerson(person);
     break;
     case "family":
     // TODO: get person's family
@@ -59,16 +59,46 @@ function mainMenu(person, people){
 function displayInformation(person){
 alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyecolor + "\n" + "Occupation:" + person[0].occupation) 
 
+function displayFamily(){
+
+
+
+}
+function displayDescendants(){
 
 
 }
 
 
+function searchBySingleTrait(singleTrait, people){
+  let foundTraits = people.filter(function(person){  //need this to search for array
+    if(person.userTraitInput === userTraitInput){
+      
+    }
+    else{
+      
+    }
+  }
 
 
 
 
 
+
+
+
+
+  //return new array
+}
+//capture search results in array variable
+
+
+//validation for trait later
+function searchByTraits(people){
+  let userTraitInput = promptfor("Please enter the trait your are searching for:")
+
+
+}
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -83,7 +113,7 @@ function searchByName(people){
     }
   })
   // TODO: find the person using the name they entered
-  return foundPerson;
+  return foundPerson[0];
 }
 
 
