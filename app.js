@@ -37,7 +37,7 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    displayInfo(person);
+    displayInformation(person);
     break;
     case "family":
     // TODO: get person's family
@@ -54,6 +54,20 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
+function displayInformation(person){
+alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyecolor + "\n" + "Occupation:" + person[0].occupation) 
+
+
+
+}
+
+
+
+
+
+
+
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
