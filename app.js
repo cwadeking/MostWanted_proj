@@ -86,6 +86,9 @@ function searchByName(people){
   return foundPerson;
 }
 
+function findFamilyMembersOfFoundPerson(){
+  
+}
 
 
 // alerts a list of people
