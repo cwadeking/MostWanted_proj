@@ -33,8 +33,7 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = prompt(`Found ${person.firstName} ${person.lastName}. Do you want to know their 'info', 'family',\n
-                             or 'descendants'? Type the option you want or 'restart' or 'quit'`);
+  let displayOption = prompt(`Found ${person.firstName} ${person.lastName}. Do you want to know their 'info', 'family',\nor 'descendants'? Type the option you want or 'restart' or 'quit'`);
 
   switch(displayOption){
     case "info":
@@ -86,15 +85,64 @@ function searchByName(people){
   return foundPerson[0];
 }
 
-function findFamilyMembersOfFoundPerson(person,people){
-let familyMembers;
-//one person
-let spouse = findSpouseOfPerson(person,people);
-//multiple possible people
-let parents = findParentsOfPerson(person,people);
-//
+function findFamilyMembersOfFoundPerson(person, people){
+  let familyMembers;
+  //one person
+  let spouse = findSpouseOfPerson(person, people);
+  //multiple possible people
+  let parents = findParentsOfPerson(person, people);
+  //find siblings
+//found person is returning as a sibling too.  Once the array comes back, need to remove found person.
+  let siblings = findSiblingsOfPerson(parents, people);
 }
 
+function findSiblingsOfPerson(parents, people){
+  let siblings = [];
+  if(parents.length == 0){
+    return siblings;
+  }
+
+  else if(parents.length >= 1){ 
+    siblings = people.filter(function (el){
+      if(el.parents.length == 0){
+        return false;
+      }
+      else if(el.parents.length == 1 && parents.length == 1){
+        if(el.parents[0] === parents[0].id){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else if(el.parents.length == 2 && parents.length == 1){
+        if(el.parents[0] === parents[0].id || el.parents[1] === parents[0].id){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else if(el.parents.length == 1 && parents.length == 2){
+        if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }  
+      else if(el.parents.length == 2 && parents.length == 2){
+        if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id || el.parents[1] === parents[0].id || el.parents[1] === parents[1].id){
+            return true;
+          }
+          else{
+            return false;
+          }
+      }
+    })
+  }   
+  return siblings;
+}
 function findParentsOfPerson(person, people){
   let parents = people.filter(function (el){
     if(person.parents[0] === el.id || person.parents[1] === el.id){
