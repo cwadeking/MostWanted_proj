@@ -74,53 +74,47 @@ function searchByTraits(people){
   switch(userTraitInput)
   {
       case "1":
-          let eyeColor = prompt("Please enter the eye color:");
+          let eyeColor = prompt("Enter eye color below:");
           let eyeColorSearch = searchBySingleTrait();
-          //alert("your results are: " +   );
           break;
       case "2":
-        let genderChoice = prompt("Please enter male or female:")
+        let genderChoice = prompt("Enter male or female below:")
         let gender = "gender"; 
          let genderChoiceSearch = searchBySingleTrait(genderChoice,people,gender);
-          //alert("Your results are " +        );
           break;
       case "3":
-        let DateOfBirth = prompt("Please enter the date of birth:" + "\n" + "* mm/dd/yyyy");
+        let DateOfBirth = prompt("Enter date of birth below:" + "\n" + "* mm/dd/yyyy");
         let DateOfBirthSearch = searchBySingleTrait();
-        //alert("your results are: " +   );
           break;
       case "4":
-        let heightChoice = prompt("Please enter the height in inches:");
+        let heightChoice = prompt("Enter height below: " + "\n" + "* in inches:");
         let heightChoiceSearch = searchBySingleTrait();
-        //alert("your results are: " +   );
           break;
       case "5":
-        let weightChoice = prompt("Please enter the weight in LBS:");
+        let weightChoice = prompt("Enter weight below: " + "\n" + "* in pounds:");
         let weightChoiceSearch = searchBySingleTrait();
-        //alert("your results are: " +   );
           break;
       default:
           
-
-
   }
 }
 
-
   function searchBySingleTrait(userTraitInput, people, singleTrait ){
-    let foundTraits = people.filter(function(person){  //need this to search for array
+    let foundTraits = people.filter(function(person){  
       
       if(person[`${singleTrait}`] === userTraitInput){
+        alert("Your results are: " + foundTraits);
         return true;
       }
       else{
-       // alert("Our data does not match your search criteria"); 
+       alert("Our data does not match your search criteria"); 
         return false;
         
       }
     })
     return foundTraits[0];
 }
+
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
