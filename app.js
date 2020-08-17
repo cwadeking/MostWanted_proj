@@ -58,74 +58,69 @@ function mainMenu(person, people){
 function displayInformation(person){
 alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyecolor + "\n" + "Occupation:" + person[0].occupation) 
 
+
+
+
+  //return new array
 }
+//capture search results in array variable
+
+
+//validation for trait later
 
 
 function searchByTraits(people){
-  let traitSearchArray = [];
   let userTraitInput = prompt("For eye color, enter: 1"+"\n" + "For gender, enter: 2"+"\n" + "For DOB, enter: 3"+"\n" + "For height, please enter: 4"+"\n" + "For weight, enter: 5");
   switch(userTraitInput)
   {
       case "1":
-          let eyeColorChoice = prompt("Enter eye color below:");
-          let eyeColor = "eyeColor";
-          traitSearchArray = searchBySingleTrait(eyeColorChoice,people, eyeColor);
+          let eyeColor = prompt("Please enter the eye color:");
+          let eyeColorSearch = searchBySingleTrait();
+          //alert("your results are: " +   );
           break;
       case "2":
-        let genderChoice = prompt("Enter male or female below:")
+        let genderChoice = prompt("Please enter male or female:")
         let gender = "gender"; 
-        traitSearchArray = searchBySingleTrait(genderChoice,people,gender);
+         let genderChoiceSearch = searchBySingleTrait(genderChoice,people,gender);
+          //alert("Your results are " +        );
           break;
       case "3":
-        let dOBChoice = prompt("Enter date of birth below:" + "\n" + "* mm/dd/yyyy");
-        let dob = "dob";
-        traitSearchArray = searchBySingleTrait(dOBChoice,people,dob);
+        let DateOfBirth = prompt("Please enter the date of birth:" + "\n" + "* mm/dd/yyyy");
+        let DateOfBirthSearch = searchBySingleTrait();
+        //alert("your results are: " +   );
           break;
       case "4":
-        let heightChoice = prompt("Enter height below: " + "\n" + "* in inches:");
-        let height = "height";
-        traitSearchArray = searchBySingleTrait(heightChoice,people,height);
+        let heightChoice = prompt("Please enter the height in inches:");
+        let heightChoiceSearch = searchBySingleTrait();
+        //alert("your results are: " +   );
           break;
       case "5":
-        let weightChoice = prompt("Enter weight below: " + "\n" + "* in pounds:");
-        let weight = "weight";
-        traitSearchArray = searchBySingleTrait(weightChoice,people,weight);
+        let weightChoice = prompt("Please enter the weight in LBS:");
+        let weightChoiceSearch = searchBySingleTrait();
+        //alert("your results are: " +   );
           break;
       default:
-         
-      return searchByTraits(traitSearchArray);
-  } 
+          
+
+
+  }
 }
 
-//goes through array of data and puts together a new array based on criteria
+
   function searchBySingleTrait(userTraitInput, people, singleTrait ){
-    let foundTraits = people.filter(function(person){  
+    let foundTraits = people.filter(function(person){  //need this to search for array
       
       if(person[`${singleTrait}`] === userTraitInput){
-      
         return true;
       }
       else{
-       
+       // alert("Our data does not match your search criteria"); 
         return false;
         
       }
     })
-    
-    return foundTraits, displayTraitPeople(foundTraits);
-    
+    return foundTraits[0];
 }
-
-//fuction which will alert people found by traita 
-function displayTraitPeople(people){
-  alert(people.map(function(person){
-    return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
-  }).join("\n" + ""));
-}
-
-
-
-
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -144,76 +139,65 @@ function searchByName(people){
 }
 
 function findFamilyMembersOfFoundPerson(person, people){
-  let familyMembers;
   //one person
   let spouse = findSpouseOfPerson(person, people);
   //multiple possible people
   let parents = findParentsOfPerson(person, people);
   //find siblings
 //found person is returning as a sibling too.  Once the array comes back, need to remove found person.
-  let siblings = findSiblingsOfPerson(parents, people);
+  let siblings = findSiblingsOfPerson(parents, people, person);
+
+  displayFamilyMembers(spouse, parents, siblings, person);
 }
 
 function findSiblingsOfPerson(parents, people, person){
-  let siblings = people.filter(function (el){
-    if(el.parents.includes(parents.id)){
-      return true;
-    }
-    else{
-      return false;
-    }
-  })
-  if(siblings.includes(person)){
-    siblings.findIndex().splice();
+  let siblings = [];
+  if(parents.length == 0){
+    return siblings;
   }
-  
-}  
-  
-//   if(parents.length == 0){
-//     return siblings;
-//   }
 
-//   else if(parents.length >= 1){ 
-//     siblings = people.filter(function (el){
-//       if(el.parents.length == 0){
-//         return false;
-//       }
-//       else if(el.parents.length == 1 && parents.length == 1){
-//         if(el.parents[0] === parents[0].id){
-//           return true;
-//         }
-//         else{
-//           return false;
-//         }
-//       }
-//       else if(el.parents.length == 2 && parents.length == 1){
-//         if(el.parents[0] === parents[0].id || el.parents[1] === parents[0].id){
-//           return true;
-//         }
-//         else{
-//           return false;
-//         }
-//       }
-//       else if(el.parents.length == 1 && parents.length == 2){
-//         if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id){
-//           return true;
-//         }
-//         else{
-//           return false;
-//         }
-//       }  
-//       else if(el.parents.length == 2 && parents.length == 2){
-//         if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id || el.parents[1] === parents[0].id || el.parents[1] === parents[1].id){
-//             return true;
-//           }
-//           else{
-//             return false;
-//           }
-//       }
-//     })
-//   }   
-//   return siblings;
-// }
+  else if(parents.length >= 1){ 
+    siblings = people.filter(function (el){
+      
+      if(el.parents.length == 0 || el === person){
+        return false;
+      }
+      else if(el.parents.length == 1 && parents.length == 1){
+        if(el.parents[0] === parents[0].id){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else if(el.parents.length == 2 && parents.length == 1){
+        if(el.parents[0] === parents[0].id || el.parents[1] === parents[0].id){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }
+      else if(el.parents.length == 1 && parents.length == 2){
+        if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id){
+          return true;
+        }
+        else{
+          return false;
+        }
+      }  
+      else if(el.parents.length == 2 && parents.length == 2){
+        if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id || el.parents[1] === parents[0].id || el.parents[1] === parents[1].id){
+            return true;
+          }
+          else{
+            return false;
+          }
+      }
+    })
+  }   
+  return siblings;
+}
 function findParentsOfPerson(person, people){
   let parents = people.filter(function (el){
     if(person.parents[0] === el.id || person.parents[1] === el.id){
@@ -237,6 +221,33 @@ let spouse = people.filter(function (el){
 })
 return spouse[0];
 }
+
+function displayFamilyMembers(spouse, parents, siblings, person){
+  if(spouse.gender === "male"){
+    console.log(`${person.firstName + person.lastName}'s husband is ${spouse.firstName + spouse.lastName}`);
+  }
+  else{
+    console.log(`${person.firstName + person.lastName}'s wife is ${spouse.firstName + spouse.lastName}`)
+  }
+  parents.forEach(function (el){
+    if(el.gender === "male"){
+      console.log(`${el.firstName + el.lastName} is ${person.firstName + person.lastName}'s father`);
+    }
+    else{
+      console.log(`${el.firstName + el.lastName} is ${person.firstName + person.lastName}'s mother`);
+    }
+  })  
+  siblings.forEach(function (el){
+    if(el.gender === "male"){
+      console.log(`${el.firstName} ${el.lastName} is ${person.firstName} + ${person.lastName}'s brother`)
+    }
+    else{
+      console.log(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s sister`)
+    }
+  })
+}
+
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
