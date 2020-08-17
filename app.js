@@ -126,19 +126,9 @@ function displayTraitPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
   }).join("\n" + ""));
-//addSearchCriteria(people);
+
 }
 
-
-function addSearchCriteria(people){
-  let addAdditionalCriteriaInput = prompt("Enter: 'exit' if you are completed, or else enter: 'more' to add further criteria");
-    if(addAdditionalCriteriaInput === "exit"){
-      return true;
-   }
-    else{
-      searchByTraits(people); 
-    }
-  }
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
