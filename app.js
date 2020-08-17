@@ -66,8 +66,9 @@ function searchByTraits(people){
   switch(userTraitInput)
   {
       case "1":
-          let eyeColor = prompt("Enter eye color below:");
-          let eyeColorSearch = searchBySingleTrait();
+          let eyeColorChoice = prompt("Enter eye color below:");
+          let eyeColor = "eyeColor";
+          let eyeColorChoiceSearch = searchBySingleTrait(eyeColorChoice,people, eyeColor);
           break;
       case "2":
         let genderChoice = prompt("Enter male or female below:")
@@ -75,16 +76,19 @@ function searchByTraits(people){
          let genderChoiceSearch = searchBySingleTrait(genderChoice,people,gender);
           break;
       case "3":
-        let DateOfBirth = prompt("Enter date of birth below:" + "\n" + "* mm/dd/yyyy");
-        let DateOfBirthSearch = searchBySingleTrait();
+        let dOBChoice = prompt("Enter date of birth below:" + "\n" + "* mm/dd/yyyy");
+        let dOB = "dob";
+        let dOBChoiceSearch = searchBySingleTrait(dOBChoice,people,dob);
           break;
       case "4":
         let heightChoice = prompt("Enter height below: " + "\n" + "* in inches:");
-        let heightChoiceSearch = searchBySingleTrait();
+        let height = "height";
+        let heightChoiceSearch = searchBySingleTrait(heightChoice,people,height);
           break;
       case "5":
         let weightChoice = prompt("Enter weight below: " + "\n" + "* in pounds:");
-        let weightChoiceSearch = searchBySingleTrait();
+        let weight = "weight";
+        let weightChoiceSearch = searchBySingleTrait(weightChoice,people,weight);
           break;
       default:
           
@@ -113,7 +117,7 @@ function searchByTraits(people){
 //fuction which will alert people found by traita 
 function displayTraitPeople(people){
   alert(people.map(function(person){
-    return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation
+    return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
   }).join("\n" + ""));
 }
 
