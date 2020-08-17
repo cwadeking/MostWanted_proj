@@ -62,37 +62,39 @@ alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n"
 
 
 function searchByTraits(people){
+  let traitSearchArray = [];
   let userTraitInput = prompt("For eye color, enter: 1"+"\n" + "For gender, enter: 2"+"\n" + "For DOB, enter: 3"+"\n" + "For height, please enter: 4"+"\n" + "For weight, enter: 5");
   switch(userTraitInput)
   {
       case "1":
           let eyeColorChoice = prompt("Enter eye color below:");
           let eyeColor = "eyeColor";
-          let eyeColorChoiceSearch = searchBySingleTrait(eyeColorChoice,people, eyeColor);
+          traitSearchArray = searchBySingleTrait(eyeColorChoice,people, eyeColor);
           break;
       case "2":
         let genderChoice = prompt("Enter male or female below:")
         let gender = "gender"; 
-         let genderChoiceSearch = searchBySingleTrait(genderChoice,people,gender);
+        traitSearchArray = searchBySingleTrait(genderChoice,people,gender);
           break;
       case "3":
         let dOBChoice = prompt("Enter date of birth below:" + "\n" + "* mm/dd/yyyy");
         let dob = "dob";
-        let dOBChoiceSearch = searchBySingleTrait(dOBChoice,people,dob);
+        traitSearchArray = searchBySingleTrait(dOBChoice,people,dob);
           break;
       case "4":
         let heightChoice = prompt("Enter height below: " + "\n" + "* in inches:");
         let height = "height";
-        let heightChoiceSearch = searchBySingleTrait(heightChoice,people,height);
+        traitSearchArray = searchBySingleTrait(heightChoice,people,height);
           break;
       case "5":
         let weightChoice = prompt("Enter weight below: " + "\n" + "* in pounds:");
         let weight = "weight";
-        let weightChoiceSearch = searchBySingleTrait(weightChoice,people,weight);
+        traitSearchArray = searchBySingleTrait(weightChoice,people,weight);
           break;
       default:
-          
-  }
+         
+      return searchByTraits(traitSearchArray);
+  } 
 }
 
 //goes through array of data and puts together a new array based on criteria
