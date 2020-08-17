@@ -77,7 +77,7 @@ function searchByTraits(people){
           break;
       case "3":
         let dOBChoice = prompt("Enter date of birth below:" + "\n" + "* mm/dd/yyyy");
-        let dOB = "dob";
+        let dob = "dob";
         let dOBChoiceSearch = searchBySingleTrait(dOBChoice,people,dob);
           break;
       case "4":
