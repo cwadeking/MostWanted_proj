@@ -58,15 +58,7 @@ function mainMenu(person, people){
 function displayInformation(person){
 alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyecolor + "\n" + "Occupation:" + person[0].occupation) 
 
-
-
-
-  //return new array
 }
-//capture search results in array variable
-
-
-//validation for trait later
 
 
 function searchByTraits(people){
@@ -99,21 +91,34 @@ function searchByTraits(people){
   }
 }
 
+//goes through array of data and puts together a new array based on criteria
   function searchBySingleTrait(userTraitInput, people, singleTrait ){
     let foundTraits = people.filter(function(person){  
       
       if(person[`${singleTrait}`] === userTraitInput){
-        alert("Your results are: " + foundTraits);
+      
         return true;
       }
       else{
-       alert("Our data does not match your search criteria"); 
+       
         return false;
         
       }
     })
-    return foundTraits[0];
+    
+    return foundTraits, displayTraitPeople(foundTraits);
+    
 }
+
+//fuction which will alert people found by traita 
+function displayTraitPeople(people){
+  alert(people.map(function(person){
+    return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation
+  }).join("\n" + ""));
+}
+
+
+
 
 
 function searchByName(people){
