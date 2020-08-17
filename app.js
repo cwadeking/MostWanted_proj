@@ -63,7 +63,7 @@ alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n"
 
 function searchByTraits(people){
   let traitSearchArray = [];
-  let userTraitInput = prompt("For eye color, enter: 1"+"\n" + "For gender, enter: 2"+"\n" + "For DOB, enter: 3"+"\n" + "For height, please enter: 4"+"\n" + "For weight, enter: 5");
+  let userTraitInput = prompt("For eye color, enter: 1"+"\n" + "For gender, enter: 2"+"\n" + "For DOB, enter: 3"+"\n" + "For height, please enter: 4"+"\n" + "For weight, enter: 5"+ "\n" + "To exit, enter: 6");
   switch(userTraitInput)
   {
       case "1":
@@ -91,17 +91,22 @@ function searchByTraits(people){
         let weight = "weight";
         traitSearchArray = searchBySingleTrait(weightChoice,people,weight);
           break;
+      case "6":
+        //only if found a single person
+        return traitSearchArray;
       default:
          
       return searchByTraits(traitSearchArray);
   } 
+  displayTraitPeople(traitSearchArray);
+  return searchByTraits(traitSearchArray);
 }
 
 //goes through array of data and puts together a new array based on criteria
   function searchBySingleTrait(userTraitInput, people, singleTrait ){
     let foundTraits = people.filter(function(person){  
       
-      if(person[`${singleTrait}`] === userTraitInput){
+      if(person[`${singleTrait}`] == userTraitInput){
       
         return true;
       }
@@ -112,7 +117,7 @@ function searchByTraits(people){
       }
     })
     
-    return foundTraits, displayTraitPeople(foundTraits);
+    return foundTraits;
     
 }
 
@@ -121,11 +126,19 @@ function displayTraitPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
   }).join("\n" + ""));
+//addSearchCriteria(people);
 }
 
 
-
-
+function addSearchCriteria(people){
+  let addAdditionalCriteriaInput = prompt("Enter: 'exit' if you are completed, or else enter: 'more' to add further criteria");
+    if(addAdditionalCriteriaInput === "exit"){
+      return true;
+   }
+    else{
+      searchByTraits(people); 
+    }
+  }
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -139,9 +152,11 @@ function searchByName(people){
       return false;
     }
   })
-  // TODO: find the person using the name they entered
+ 
   return foundPerson[0];
+
 }
+
 
 function findFamilyMembersOfFoundPerson(person, people){
   let familyMembers;
@@ -152,7 +167,9 @@ function findFamilyMembersOfFoundPerson(person, people){
   //find siblings
 //found person is returning as a sibling too.  Once the array comes back, need to remove found person.
   let siblings = findSiblingsOfPerson(parents, people);
+
 }
+
 
 function findSiblingsOfPerson(parents, people, person){
   let siblings = people.filter(function (el){
