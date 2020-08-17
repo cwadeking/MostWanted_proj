@@ -149,53 +149,66 @@ function findFamilyMembersOfFoundPerson(person, people){
   let siblings = findSiblingsOfPerson(parents, people);
 }
 
-function findSiblingsOfPerson(parents, people){
-  let siblings = [];
-  if(parents.length == 0){
-    return siblings;
+function findSiblingsOfPerson(parents, people, person){
+  let siblings = people.filter(function (el){
+    if(el.parents.includes(parents.id)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  if(siblings.includes(person)){
+    siblings.findIndex().splice();
   }
+  
+}  
+  
+//   if(parents.length == 0){
+//     return siblings;
+//   }
 
-  else if(parents.length >= 1){ 
-    siblings = people.filter(function (el){
-      if(el.parents.length == 0){
-        return false;
-      }
-      else if(el.parents.length == 1 && parents.length == 1){
-        if(el.parents[0] === parents[0].id){
-          return true;
-        }
-        else{
-          return false;
-        }
-      }
-      else if(el.parents.length == 2 && parents.length == 1){
-        if(el.parents[0] === parents[0].id || el.parents[1] === parents[0].id){
-          return true;
-        }
-        else{
-          return false;
-        }
-      }
-      else if(el.parents.length == 1 && parents.length == 2){
-        if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id){
-          return true;
-        }
-        else{
-          return false;
-        }
-      }  
-      else if(el.parents.length == 2 && parents.length == 2){
-        if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id || el.parents[1] === parents[0].id || el.parents[1] === parents[1].id){
-            return true;
-          }
-          else{
-            return false;
-          }
-      }
-    })
-  }   
-  return siblings;
-}
+//   else if(parents.length >= 1){ 
+//     siblings = people.filter(function (el){
+//       if(el.parents.length == 0){
+//         return false;
+//       }
+//       else if(el.parents.length == 1 && parents.length == 1){
+//         if(el.parents[0] === parents[0].id){
+//           return true;
+//         }
+//         else{
+//           return false;
+//         }
+//       }
+//       else if(el.parents.length == 2 && parents.length == 1){
+//         if(el.parents[0] === parents[0].id || el.parents[1] === parents[0].id){
+//           return true;
+//         }
+//         else{
+//           return false;
+//         }
+//       }
+//       else if(el.parents.length == 1 && parents.length == 2){
+//         if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id){
+//           return true;
+//         }
+//         else{
+//           return false;
+//         }
+//       }  
+//       else if(el.parents.length == 2 && parents.length == 2){
+//         if(el.parents[0] === parents[0].id || el.parents[0] === parents[1].id || el.parents[1] === parents[0].id || el.parents[1] === parents[1].id){
+//             return true;
+//           }
+//           else{
+//             return false;
+//           }
+//       }
+//     })
+//   }   
+//   return siblings;
+// }
 function findParentsOfPerson(person, people){
   let parents = people.filter(function (el){
     if(person.parents[0] === el.id || person.parents[1] === el.id){
