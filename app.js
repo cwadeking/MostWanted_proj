@@ -81,7 +81,7 @@ function searchByTraits(people){
     traitSearchArray = searchBySingleTrait(genderChoice,people,gender);
       break;
   case "3":
-    let dOBChoice = prompt("Enter date of birth below:" + "\n" + "* mm/dd/yyyy");
+    let dOBChoice = prompt("Enter date of birth below:" + "\n" + "* m/dd/yyyy");
     let dob = "dob";
     traitSearchArray = searchBySingleTrait(dOBChoice,people,dob);
       break;
@@ -110,7 +110,7 @@ function searchByTraits(people){
   function searchBySingleTrait(userTraitInput, people, singleTrait ){
     let foundTraits = people.filter(function(person){  //need this to search for array
       
-      if(person[`${singleTrait}`] == userTraitInput){
+      if(person[`${singleTrait}`] === userTraitInput){
         return true;
       }
       else{
@@ -349,3 +349,10 @@ function getDescendants(person, people) {
 
   return descendants;
 }
+
+
+//take input in the form of 2 digit age
+//compare 2 digit age to 4 digit yea (need to not worry month/day)
+
+
+//let userDOBInput = prompt("Please Enter the ")
