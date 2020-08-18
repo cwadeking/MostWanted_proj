@@ -70,7 +70,10 @@ alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n"
 
 
 function searchByTraits(people){
-  let userTraitInput = prompt("For eye color, enter: 1"+"\n" + "For gender, enter: 2"+"\n" + "For DOB, enter: 3"+"\n" + "For height, please enter: 4"+"\n" + "For weight, enter: 5");
+
+  let traitSearchArray = [];
+  let userTraitInput = prompt("For eye color, enter: 1"+"\n" + "For gender, enter: 2"+"\n" + "For DOB, enter: 3"+"\n" + "For height, please enter: 4"+"\n" + "For weight, enter: 5"+ "\n" + "To exit, enter: 6");
+
   switch(userTraitInput)
   {
       case "1":
@@ -99,11 +102,15 @@ function searchByTraits(people){
         let weightChoiceSearch = searchBySingleTrait();
         //alert("your results are: " +   );
           break;
+      case "6":
+        //only if found a single person
+        return traitSearchArray;
       default:
-          
-
-
-  }
+         
+      return searchByTraits(traitSearchArray);
+  } 
+  displayTraitPeople(traitSearchArray);
+  return searchByTraits(traitSearchArray);
 }
 
 
@@ -134,9 +141,11 @@ function searchByName(people){
       return false;
     }
   })
-  // TODO: find the person using the name they entered
+ 
   return foundPerson[0];
+
 }
+
 
 function findFamilyMembersOfFoundPerson(person, people){
   //one person
@@ -149,6 +158,7 @@ function findFamilyMembersOfFoundPerson(person, people){
 
   displayFamilyMembers(spouse, parents, siblings, person);
 }
+
 
 function findSiblingsOfPerson(parents, people, person){
   let siblings = [];
