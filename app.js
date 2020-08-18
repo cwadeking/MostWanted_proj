@@ -147,6 +147,9 @@ function searchByName(people){
 }
 
 
+
+
+
 function findFamilyMembersOfFoundPerson(person, people){
   //one person
   let spouse = findSpouseOfPerson(person, people);
