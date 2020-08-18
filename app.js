@@ -146,24 +146,7 @@ function searchByName(people){
 
 }
 
-function findDescendantsOfFoundPerson(person, people){
- 
-  let foundDescendants = people.filter(function (el){
-    if(person.id == el.parents[0] || person.id == el.parents[1]){
-      return true;
-    }
-    else{
-      return false;
-    }
-  });
-   
-    for(var i = 0; i < foundDescendants.length; i++){
-        let newDescendants = findDescendantsOfFoundPerson(foundDescendants[i], people)
-        foundDescendants = foundDescendants.concat(newDescendants);
-    }
-    return foundDescendants;
-  
-}
+
 
 
 
