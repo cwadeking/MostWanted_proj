@@ -73,7 +73,7 @@ function searchByTraits(people){
     case "1":
       let eyeColorChoice = prompt("Enter eye color below:");
       let eyeColor = "eyeColor";
-      traitSearchArray = searchBySingleTrait(eyeColorChoice,people, eyeColor);
+      traitSearchArray = searchBySingleTrait(eyeColorChoice,people,eyeColor);
       break;
   case "2":
     let genderChoice = prompt("Enter male or female below:")
@@ -96,13 +96,13 @@ function searchByTraits(people){
     traitSearchArray = searchBySingleTrait(weightChoice,people,weight);
       break;
   case "6":
-      break;//only if found a single person
+    return mainMenu(people);
   default:
      
-  return searchByTraits(traitSearchArray);
+    return searchByTraits(traitSearchArray);
 } 
-displayTraitPeople(traitSearchArray);
-return searchByTraits(traitSearchArray);
+    displayTraitPeople(traitSearchArray);
+    return searchByTraits(traitSearchArray);
 
 }
 
@@ -110,7 +110,7 @@ return searchByTraits(traitSearchArray);
   function searchBySingleTrait(userTraitInput, people, singleTrait ){
     let foundTraits = people.filter(function(person){  //need this to search for array
       
-      if(person[`${singleTrait}`] === userTraitInput){
+      if(person[`${singleTrait}`] == userTraitInput){
         return true;
       }
       else{
@@ -119,6 +119,7 @@ return searchByTraits(traitSearchArray);
       }
     })
     return foundTraits;
+    
 }
 
 //fuction which will alert people found by trait 
