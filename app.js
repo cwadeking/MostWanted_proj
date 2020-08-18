@@ -244,14 +244,14 @@ function displayFamilyMembers(spouse, parents, siblings, person){
     console.log(`${person.firstName} ${person.lastName}'s husband is ${spouse.firstName} ${spouse.lastName}`);
   }
   else{
-    console.log(`${person.firstName + person.lastName}'s wife is ${spouse.firstName + spouse.lastName}`)
+    console.log(`${person.firstName} ${person.lastName}'s wife is ${spouse.firstName} ${spouse.lastName}`)
   }
   parents.forEach(function (el){
     if(el.gender === "male"){
-      console.log(`${el.firstName + el.lastName} is ${person.firstName + person.lastName}'s father`);
+      console.log(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s father`);
     }
     else{
-      console.log(`${el.firstName + el.lastName} is ${person.firstName + person.lastName}'s mother`);
+      console.log(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s mother`);
     }
   })  
   siblings.forEach(function (el){
