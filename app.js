@@ -33,22 +33,22 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = prompt(`Found ${person.firstName} ${person.lastName}. Do you want to know their 'info', 'family',\nor 'descendants'? Type the option you want or 'restart' or 'quit'`);
+  let displayOption = prompt(`Found ${person.firstName} ${person.lastName}. For 'info', press 1 \n For 'family', press 2 \n For 'descendants', press 3 \n To 'restart', press 4 or to 'quit', press 5`);
 
   switch(displayOption){
-    case "info":
+    case "1":
     displayPerson(person);
     break;
-    case "family":
+    case "2":
     findFamilyMembersOfFoundPerson(person,people)
     break;
-    case "descendants":
+    case "3":
     displayDescendants(person,people)
     break;
-    case "restart":
+    case "4":
     app(people); // restart
     break;
-    case "quit":
+    case "5":
     return; // stop execution
     default:
     return mainMenu(person, people); // ask again
