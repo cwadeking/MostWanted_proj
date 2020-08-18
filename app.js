@@ -125,7 +125,7 @@ function searchByTraits(people){
 //fuction which will alert people found by trait 
 function displayTraitPeople(people){
   alert(people.map(function(person){
-    return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
+    return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyeColor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
   }).join("\n" + ""));
 }
 
@@ -342,10 +342,10 @@ function getDescendants(person, people) {
       if (element.parents.length === 0) {
           return false;
       }
-      else if (element.parents[0] === person.id || element.parents[1] === person.id) {
+      else if (element.parents.includes(person.id)) {
           return true;
       }
-  });
+  }); //need to change names
 
   return descendants;
 }
