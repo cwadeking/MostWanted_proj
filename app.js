@@ -43,7 +43,7 @@ function mainMenu(person, people){
     findFamilyMembersOfFoundPerson(person,people)
     break;
     case "descendants":
-    // TODO: get person's descendants
+    getDescendantsRecursively(person,people)
     break;
     case "restart":
     app(people); // restart
@@ -121,15 +121,14 @@ return searchByTraits(traitSearchArray);
         return true;
       }
       else{
-       // alert("Our data does not match your search criteria"); 
         return false;
         
       }
     })
-    return foundTraits[0];
+    return foundTraits;
 }
 
-//fuction which will alert people found by traita 
+//fuction which will alert people found by trait 
 function displayTraitPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
@@ -303,3 +302,20 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
+
+
+//function getDescendantsRecursively (person, everyone, allDescendants = []){
+//  for (let i = 0; i < everyone.length; i++){
+//      if (everyone[i].parents.length !== 0){
+//          let id = person.id;
+//          let firstParentId = everyone[i].parents[0];
+//          let secondParentId = everyone[i].parents[1];
+//          if (id == firstParentId || id == secondParentId){
+//              allDescendants.push(everyone[i]);
+//              getDescendantsRecursively(everyone[i], everyone, allDescendants);
+//          }
+//      }
+//  }
+//  alert(allDescendants);
+//  return allDescendants;
+//}
