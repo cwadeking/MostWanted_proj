@@ -12,7 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      searchResults = searchByTraits(people);// TODO: search by traits
+      searchResults = searchByTraits(people);
       break;
       default:
     app(people); // restart app
@@ -58,21 +58,15 @@ function mainMenu(person, people){
 function displayInformation(person){
 alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyecolor + "\n" + "Occupation:" + person[0].occupation) 
 
-
-
-
-  //return new array
 }
 //capture search results in array variable
 
 
 //validation for trait later
-
-
 function searchByTraits(people){
 
   let traitSearchArray = [];
-  let userTraitInput = prompt("For eye color, enter: 1"+"\n" + "For gender, enter: 2"+"\n" + "For DOB, enter: 3"+"\n" + "For height, please enter: 4"+"\n" + "For weight, enter: 5"+ "\n" + "To exit, enter: 6");
+  let userTraitInput = prompt("For eye color, enter: 1"+"\n" + "For gender, enter: 2"+"\n" + "For DOB, enter: 3"+"\n" + "For height, enter: 4"+"\n" + "For weight, enter: 5"+ "\n" + "To exit, enter: 6");
 
   switch(userTraitInput)
   {
@@ -214,6 +208,8 @@ function findSiblingsOfPerson(parents, people, person){
   }   
   return siblings;
 }
+
+
 function findParentsOfPerson(person, people){
   let parents = people.filter(function (el){
     if(person.parents[0] === el.id || person.parents[1] === el.id){
@@ -226,6 +222,7 @@ function findParentsOfPerson(person, people){
   return parents;
 }
 
+
 function findSpouseOfPerson(person,people){
 let spouse = people.filter(function (el){
   if(person.currentSpouse === el.id){
@@ -237,6 +234,7 @@ let spouse = people.filter(function (el){
 })
 return spouse[0];
 }
+
 
 function displayFamilyMembers(spouse, parents, siblings, person){
   if(spouse.gender === "male"){
@@ -263,13 +261,13 @@ function displayFamilyMembers(spouse, parents, siblings, person){
   })
 }
 
-
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
+
 
 function displayPerson(person){
   // print all of the information about a person:
@@ -283,6 +281,7 @@ function displayPerson(person){
   personInfo = "Eye Color: " + person.eyecolor + "\n";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+  app(people);
 }
 
 // function that prompts and validates user input
@@ -303,6 +302,7 @@ function chars(input){
   return true; // default validation only
 }
 
+
 function displayDescendants(person, people) {
 
   let descendants = findDescendants(person, people);
@@ -315,6 +315,7 @@ function displayDescendants(person, people) {
   app(people);
 }
 
+
 function findDescendants(person, people) {
 
   let descendant = getDescendants(person, people);
@@ -324,13 +325,14 @@ function findDescendants(person, people) {
       descendantsToReturn += descendant[i].firstName + " " + descendant[i].lastName + ". ";
 
       if (i >= 0) {
-          var grandChildren = findDescendants(descendant[i], people);
+          let grandChildren = findDescendants(descendant[i], people);
           descendantsToReturn += grandChildren;
       }
   }
 
   return descendantsToReturn;
 }
+
 
 function getDescendants(person, people) {
 
