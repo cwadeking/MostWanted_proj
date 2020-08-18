@@ -234,7 +234,7 @@ return spouse[0];
 
 function displayFamilyMembers(spouse, parents, siblings, person){
   if(spouse.gender === "male"){
-    console.log(`${person.firstName + person.lastName}'s husband is ${spouse.firstName + spouse.lastName}`);
+    console.log(`${person.firstName} ${person.lastName}'s husband is ${spouse.firstName} ${spouse.lastName}`);
   }
   else{
     console.log(`${person.firstName + person.lastName}'s wife is ${spouse.firstName + spouse.lastName}`)
