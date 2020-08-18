@@ -40,10 +40,11 @@ function mainMenu(person, people){
     displayPerson(person);
     break;
     case "family":
-    findFamilyMembersOfFoundPerson(person,people)
+    let familyMembers = findFamilyMembersOfFoundPerson(person,people);
     break;
     case "descendants":
-    // TODO: get person's descendants
+    let descendants = findDescendantsOfFoundPerson(person, people);
+    displayPeople(descendants);
     break;
     case "restart":
     app(people); // restart
@@ -152,6 +153,26 @@ function searchByName(people){
   return foundPerson[0];
 
 }
+
+function findDescendantsOfFoundPerson(person, people){
+ 
+  let foundDescendants = people.filter(function (el){
+    if(person.id == el.parents[0] || person.id == el.parents[1]){
+      return true;
+    }
+    else{
+      return false;
+    }
+  });
+   
+    for(var i = 0; i < foundDescendants.length; i++){
+        let newDescendants = findDescendantsOfFoundPerson(foundDescendants[i], people)
+        foundDescendants = foundDescendants.concat(newDescendants);
+    }
+    return foundDescendants;
+  
+}
+
 
 
 function findFamilyMembersOfFoundPerson(person, people){
