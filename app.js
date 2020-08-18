@@ -33,7 +33,7 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = prompt(`Found ${person.firstName} ${person.lastName}. For 'info', press 1 \n For 'family', press 2 \n For 'descendants', press 3 \n To 'restart', press 4 or to 'quit', press 5`);
+  let displayOption = prompt(`Found ${person.firstName} ${person.lastName}. \n For 'info', press 1 \n For 'family', press 2 \n For 'descendants', press 3 \n To 'restart', press 4 \n To 'quit', press 5`);
 
   switch(displayOption){
     case "1":
@@ -96,8 +96,7 @@ function searchByTraits(people){
     traitSearchArray = searchBySingleTrait(weightChoice,people,weight);
       break;
   case "6":
-    //only if found a single person
-    return traitSearchArray;
+      break;//only if found a single person
   default:
      
   return searchByTraits(traitSearchArray);
@@ -268,18 +267,18 @@ function displayPeople(people){
   }).join("\n"));
 }
 
+function displayPerson(person, people) {
 
-function displayPerson(person){
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  personInfo = "Height: " + person.height + "\n";
-  personInfo = "Weight: " + person.weight + "\n";
-  personInfo = "Age: " + person.age + "\n";
-  personInfo = "Occupation: " + person.occupation + "\n";
-  personInfo = "Eye Color: " + person.eyecolor + "\n";
-  // TODO: finish getting the rest of the information to display
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "DOB: " + person.dob + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + parent + "\n";
+
   alert(personInfo);
   app(people);
 }
