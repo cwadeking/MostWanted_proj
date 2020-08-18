@@ -43,7 +43,7 @@ function mainMenu(person, people){
     findFamilyMembersOfFoundPerson(person,people)
     break;
     case "descendants":
-    getDescendantsRecursively(person,people)
+    displayDescendants(person,people)
     break;
     case "restart":
     app(people); // restart
@@ -303,19 +303,47 @@ function chars(input){
   return true; // default validation only
 }
 
+function displayDescendants(person, people) {
 
-//function getDescendantsRecursively (person, everyone, allDescendants = []){
-//  for (let i = 0; i < everyone.length; i++){
-//      if (everyone[i].parents.length !== 0){
-//          let id = person.id;
-//          let firstParentId = everyone[i].parents[0];
-//          let secondParentId = everyone[i].parents[1];
-//          if (id == firstParentId || id == secondParentId){
-//              allDescendants.push(everyone[i]);
-//              getDescendantsRecursively(everyone[i], everyone, allDescendants);
-//          }
-//      }
-//  }
-//  alert(allDescendants);
-//  return allDescendants;
-//}
+  let descendants = findDescendants(person, people);
+
+  if (descendants.length === 0) {
+      descendants = "Descendants not in data set."
+  }
+
+  alert(descendants);
+  app(people);
+}
+
+function findDescendants(person, people) {
+
+  let descendant = getDescendants(person, people);
+  let descendantsToReturn = "";
+
+  for (let i = 0; i < descendant.length; i++) {
+      descendantsToReturn += descendant[i].firstName + " " + descendant[i].lastName + ". ";
+
+      if (i >= 0) {
+          var grandChildren = findDescendants(descendant[i], people);
+          descendantsToReturn += grandChildren;
+      }
+  }
+
+  return descendantsToReturn;
+}
+
+function getDescendants(person, people) {
+
+  let descendants = [];
+
+  descendants = people.filter(function (element) {
+      if (element.parents.length === 0) {
+          return false;
+      }
+      else if (element.parents[0] === person.id || element.parents[1] === person.id) {
+          return true;
+      }
+  });
+
+  return descendants;
+}
