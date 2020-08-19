@@ -56,7 +56,7 @@ function mainMenu(person, people){
 }
 
 function displayInformation(person){
-alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyecolor + "\n" + "Occupation:" + person[0].occupation) 
+alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyeColor + "\n" + "Occupation:" + person[0].occupation) 
 
 }
 //capture search results in array variable
@@ -281,7 +281,7 @@ function displayPerson(person, people) {
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
-  personInfo += "Parents: " + parent + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
 
   alert(personInfo);
   app(people);
@@ -348,14 +348,9 @@ function getDescendants(person, people) {
       else if (element.parents.includes(person.id)) {
           return true;
       }
-  }); //need to change names
+  }); 
 
   return descendants;
 }
 
 
-//take input in the form of 2 digit age
-//compare 2 digit age to 4 digit yea (need to not worry month/day)
-
-
-//let userDOBInput = prompt("Please Enter the ")
