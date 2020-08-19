@@ -96,7 +96,7 @@ function searchByTraits(people){
     traitSearchArray = searchBySingleTrait(weightChoice,people,weight);
       break;
   case "6":
-    return mainMenu(people);
+    return app(people);
   default:
      
     return searchByTraits(traitSearchArray);
