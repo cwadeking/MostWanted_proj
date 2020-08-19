@@ -86,12 +86,20 @@ function searchByTraits(people){
     traitSearchArray = searchBySingleTrait(dOBChoice,people,dob);
       break;
   case "4":
-    let heightChoice = prompt("Enter height below: " + "\n" + "* in inches:");
+    let heightChoice = parseInt(prompt("Enter height below: " + "\n" + "* in inches:"));
+    let validHeightNumber = checkIntegerValue(heightChoice);
+    if(validHeightNumber === false){
+      break;
+    }
     let height = "height";
     traitSearchArray = searchBySingleTrait(heightChoice,people,height);
-      break;
+    break;
   case "5":
-    let weightChoice = prompt("Enter weight below: " + "\n" + "* in pounds:");
+    let weightChoice = parseInt(prompt("Enter weight below: " + "\n" + "* in pounds:"));
+    let validWeightNumber = checkIntegerValue(weightChoice);
+    if(validWeightNumber === false){
+      break;
+    }
     let weight = "weight";
     traitSearchArray = searchBySingleTrait(weightChoice,people,weight);
       break;
@@ -106,6 +114,13 @@ function searchByTraits(people){
 
 }
 
+function checkIntegerValue(value){
+  if (!isNaN(value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
   function searchBySingleTrait(userTraitInput, people, singleTrait ){
     let foundTraits = people.filter(function(person){  //need this to search for array
