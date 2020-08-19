@@ -56,7 +56,7 @@ function mainMenu(person, people){
 }
 
 function displayInformation(person){
-alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyecolor + "\n" + "Occupation:" + person[0].occupation) 
+alert("ID: " + person[0].id + "\n" + "First Name: " + person[0].firstName + "\n" + " Last Name: " +  person[0].lastName + "\n" + "Gender: " + person[0].gender + "\n" + "DOB: " + person[0].dob + "\n" + "Height: " + person[0].height + "\n" + "Weight:" + person[0].weight + "\n" + "Eye Color:" + person[0].eyeColor + "\n" + "Occupation:" + person[0].occupation) 
 
 }
 //capture search results in array variable
@@ -96,7 +96,7 @@ function searchByTraits(people){
     traitSearchArray = searchBySingleTrait(weightChoice,people,weight);
       break;
   case "6":
-    return mainMenu(people);
+    return app(people);
   default:
      
     return searchByTraits(traitSearchArray);
@@ -125,7 +125,7 @@ function searchByTraits(people){
 //fuction which will alert people found by trait 
 function displayTraitPeople(people){
   alert(people.map(function(person){
-    return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyecolor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
+    return person.firstName + " " + person.lastName + "\n" + "Gender: " + person.gender + "\n" + "DOB: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight:" + person.weight + "\n" + "Eye Color:" + person.eyeColor + "\n" + "Occupation:" + person.occupation + "\n" + "\n"
   }).join("\n" + ""));
 }
 
@@ -280,7 +280,7 @@ function displayPerson(person, people) {
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
-  personInfo += "Parents: " + parent + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
 
   alert(personInfo);
   app(people);
@@ -344,17 +344,12 @@ function getDescendants(person, people) {
       if (element.parents.length === 0) {
           return false;
       }
-      else if (element.parents[0] === person.id || element.parents[1] === person.id) {
+      else if (element.parents.includes(person.id)) {
           return true;
       }
-  });
+  }); 
 
   return descendants;
 }
 
 
-//take input in the form of 2 digit age
-//compare 2 digit age to 4 digit yea (need to not worry month/day)
-
-
-//let userDOBInput = prompt("Please Enter the ")
