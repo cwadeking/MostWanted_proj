@@ -149,7 +149,6 @@ function searchByName(people){
 
 
 
-
 function findFamilyMembersOfFoundPerson(person, people){
   //one person
   let spouse = findSpouseOfPerson(person, people);
@@ -241,25 +240,25 @@ return spouse[0];
 
 function displayFamilyMembers(spouse, parents, siblings, person){
   if(spouse.gender === "male"){
-    console.log(`${person.firstName} ${person.lastName}'s husband is ${spouse.firstName} ${spouse.lastName}`);
+    alert(`${person.firstName} ${person.lastName}'s husband is ${spouse.firstName} ${spouse.lastName}`);
   }
   else{
-    console.log(`${person.firstName} ${person.lastName}'s wife is ${spouse.firstName} ${spouse.lastName}`)
+    alert(`${person.firstName} ${person.lastName}'s wife is ${spouse.firstName} ${spouse.lastName}`)
   }
   parents.forEach(function (el){
     if(el.gender === "male"){
-      console.log(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s father`);
+      alert(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s father`);
     }
     else{
-      console.log(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s mother`);
+      alert(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s mother`);
     }
   })  
   siblings.forEach(function (el){
     if(el.gender === "male"){
-      console.log(`${el.firstName} ${el.lastName} is ${person.firstName} + ${person.lastName}'s brother`)
+      alert(`${el.firstName} ${el.lastName} is ${person.firstName} + ${person.lastName}'s brother`)
     }
     else{
-      console.log(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s sister`)
+      alert(`${el.firstName} ${el.lastName} is ${person.firstName} ${person.lastName}'s sister`)
     }
   })
 }
